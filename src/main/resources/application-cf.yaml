@@ -3,6 +3,6 @@ eureka:
     hostname: sv-consumer.cfapps.io
   client:
     service-url:
-      defaultZone: https://sv-registry-server.cfapps.io/eureka
+      defaultZone: http://sv-registry-server.apps.internal:8080/eureka
 producer:
   name: http://sv-producer:8080
