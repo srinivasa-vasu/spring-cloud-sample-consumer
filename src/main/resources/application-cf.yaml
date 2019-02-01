@@ -5,4 +5,4 @@ eureka:
     service-url:
       defaultZone: https://sv-registry-server.cfapps.io/eureka
 producer:
-  url: http://sv-producer:8080
+  name: http://sv-producer:8080
