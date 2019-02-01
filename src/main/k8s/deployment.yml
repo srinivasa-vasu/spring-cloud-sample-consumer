@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sv-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sv-consumer
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 50  
+  template:
+    metadata:
+      labels:
+        app: sv-consumer
+    spec:
+      containers:
+      - name: sv-consumer
+        image: humourmind/consumer:1.0.0
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "768Mi"
+            cpu: "300m"
+          limits:
+            memory: "768Mi"
+            cpu: "750m"
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: cloud,k8s
+        ports:
+        - name: web
+          containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: web
+          initialDelaySeconds: 40
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: web
+          initialDelaySeconds: 60
+          periodSeconds: 1 
+          failureThreshold: 1

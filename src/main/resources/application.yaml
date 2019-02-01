@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: sv-consumer
+server:
+  port: 8080
+eureka:
+  instance:
+    appname: sv-consumer
+    instance-id: sv-consumer
+    app-group-name: sv-consumer
+  client:
+    fetch-registry: true
+    prefer-same-zone-eureka: false
+    register-with-eureka: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

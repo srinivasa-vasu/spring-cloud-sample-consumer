@@ -1,0 +1,9 @@
+---
+applications:
+  - name: sv-consumer
+    path: target/consumer-1.0.0.jar
+    timeout: 180
+    instances: 1
+    memory: 1G
+    env:
+      SPRING_PROFILES_ACTIVE: cloud,cf

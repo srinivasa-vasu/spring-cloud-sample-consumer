@@ -1,0 +1,8 @@
+eureka:
+  instance:
+    hostname: sv-consumer.pksapps.humourmind.com
+  client:
+    service-url:
+      defaultZone: http://sv-registry-server.service-registry.svc.cluster.local/eureka
+producer:
+  name: https://sv-producer:443
